@@ -1,0 +1,13 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://c8l66ertqumv7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tbgi4"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_tefeu"]
+sky_material = SubResource("ProceduralSkyMaterial_tbgi4")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_tefeu")
+tonemap_mode = 2

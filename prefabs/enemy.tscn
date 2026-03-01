@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://blu5peffefbi8"]
+
+[ext_resource type="PackedScene" uid="uid://5w528g1u6c6s" path="res://imported_assets/kenney_prototype-kit/Models/GLB format/figurine.glb" id="1_6n8dw"]
+[ext_resource type="PhysicsMaterial" uid="uid://coatu8qi5pt85" path="res://bouncy.tres" id="1_yfjof"]
+[ext_resource type="Script" uid="uid://d1hfoplonmk0p" path="res://scripts/enemy.gd" id="2_cypye"]
+[ext_resource type="Material" uid="uid://cf1ovlrnf06d5" path="res://materials/flash_white.tres" id="4_aivmq"]
+[ext_resource type="PackedScene" uid="uid://caorka4hqulq5" path="res://prefabs/anim_take_damage.tscn" id="5_aivmq"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yfjof"]
+height = 0.6816406
+radius = 0.2998047
+
+[node name="enemy" type="RigidBody3D"]
+collision_mask = 2
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 30.0
+physics_material_override = ExtResource("1_yfjof")
+contact_monitor = true
+max_contacts_reported = 16
+angular_damp = 2.0
+script = ExtResource("2_cypye")
+
+[node name="visual" type="Node3D" parent="."]
+
+[node name="figurine2" parent="visual" instance=ExtResource("1_6n8dw")]
+transform = Transform3D(1.1781574, 0, 0, 0, 1.1781574, 0, 0, 0, 1.1781574, 0, -0.47705, 0)
+
+[node name="flash_white" type="Node3D" parent="."]
+visible = false
+
+[node name="figurine3" parent="flash_white" instance=ExtResource("1_6n8dw")]
+transform = Transform3D(1.1781574, 0, 0, 0, 1.1781574, 0, 0, 0, 1.1781574, 0, -0.47705, 0)
+
+[node name="leg-left" parent="flash_white/figurine3/figurine/root" index="0"]
+surface_material_override/0 = ExtResource("4_aivmq")
+
+[node name="leg-right" parent="flash_white/figurine3/figurine/root" index="1"]
+surface_material_override/0 = ExtResource("4_aivmq")
+
+[node name="torso" parent="flash_white/figurine3/figurine/root" index="2"]
+surface_material_override/0 = ExtResource("4_aivmq")
+
+[node name="arm-left" parent="flash_white/figurine3/figurine/root/torso" index="0"]
+surface_material_override/0 = ExtResource("4_aivmq")
+
+[node name="arm-right" parent="flash_white/figurine3/figurine/root/torso" index="1"]
+surface_material_override/0 = ExtResource("4_aivmq")
+
+[node name="head" parent="flash_white/figurine3/figurine/root/torso" index="2"]
+surface_material_override/0 = ExtResource("4_aivmq")
+
+[node name="shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.028320313, 0)
+shape = SubResource("CylinderShape3D_yfjof")
+
+[node name="take_damage" parent="." node_paths=PackedStringArray("normal_visual", "flash_white_visual") instance=ExtResource("5_aivmq")]
+flash_white = false
+normal_visual = NodePath("../visual")
+flash_white_visual = NodePath("../flash_white")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="visual/figurine2"]
+[editable path="flash_white/figurine3"]

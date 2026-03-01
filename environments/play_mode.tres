@@ -1,0 +1,24 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://dhbrpk5707yve"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tbgi4"]
+sky_top_color = Color(0.20169425, 0.023494327, 0.1905509, 1)
+sky_horizon_color = Color(0.35971895, 0.367033, 0.38167477, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_tefeu"]
+sky_material = SubResource("ProceduralSkyMaterial_tbgi4")
+
+[resource]
+background_mode = 2
+background_color = Color(1.6364455e-06, 0, 0.5694044, 1)
+sky = SubResource("Sky_tefeu")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 15.0
+adjustment_enabled = true

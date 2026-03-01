@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://caorka4hqulq5"]
+
+[ext_resource type="Script" uid="uid://rprbtp83m6bg" path="res://scripts/anim_take_damage.gd" id="1_lu8x3"]
+
+[sub_resource type="Animation" id="Animation_a7d0n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("take_damage:flash_white")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_cypye"]
+resource_name = "take_damage"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("take_damage:flash_white")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a7d0n"]
+_data = {
+&"RESET": SubResource("Animation_a7d0n"),
+&"take_damage": SubResource("Animation_cypye")
+}
+
+[node name="take_damage" type="AnimationPlayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_a7d0n")
+}
+script = ExtResource("1_lu8x3")
+flash_white = true
