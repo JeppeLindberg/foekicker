@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var main = get_node('/root/main')
 @onready var head = get_node('head')
 @onready var kick_timer = get_node('kick_timer')
+@onready var full_screen_effect_mgt = get_node('/root/main/full_screen_effect_mgt')
 
 var rotation_target: Vector3 = Vector3.ZERO
 
@@ -77,6 +78,8 @@ func handle_controls(_delta):
 		kick_timer.play('kick')
 
 
+func take_damage():
+	full_screen_effect_mgt.flash_black()
 
 	
 func _input(event):

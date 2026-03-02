@@ -6,6 +6,7 @@ extends RigidBody3D
 
 func _ready() -> void:
 	add_to_group('kickable')
+	add_to_group('bullet_immune')
 
 func kick(kick_source_node):
 	var kick_direction = (global_position - kick_source_node.global_position) * Vector3(1.0, 0.0, 1.0).normalized()

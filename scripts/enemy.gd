@@ -7,6 +7,7 @@ extends RigidBody3D
 
 func _ready() -> void:
 	add_to_group('kickable')
+	add_to_group('bullet_immune')
 
 func _physics_process(_delta: float) -> void:
 	look_at(player.global_position)
