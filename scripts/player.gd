@@ -19,6 +19,9 @@ var input_mouse: Vector2
 var input_enabled = true;
 var immune_to_kick = []
 
+func _ready() -> void:
+	add_to_group('player')
+
 func _physics_process(delta):
 	handle_controls(delta)
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://da27h03y8lmfm"]
+
+[ext_resource type="Script" uid="uid://darkbbbetrl04" path="res://scripts/player_detector.gd" id="1_louol"]
+
+[node name="player_detector" type="Node3D"]
+script = ExtResource("1_louol")
+
+[node name="raycast" type="RayCast3D" parent="."]
+top_level = true

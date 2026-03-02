@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnjdbt262y6uw"]
+
+[ext_resource type="Script" uid="uid://ge8stiyebafm" path="res://scripts/bullet_emitter.gd" id="1_xpghm"]
+[ext_resource type="PackedScene" uid="uid://bmapeiiwuahgy" path="res://prefabs/bullet.tscn" id="2_w63nj"]
+
+[node name="bullet_emitter" type="Node3D"]
+script = ExtResource("1_xpghm")
+bullet_prefab = ExtResource("2_w63nj")

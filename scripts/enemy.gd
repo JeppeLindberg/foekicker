@@ -2,12 +2,25 @@ extends RigidBody3D
 
 @onready var player = get_node('/root/main/player')
 @onready var take_damage_anim = get_node('take_damage')
+@onready var player_detector = get_node('player_detector')
+@onready var bullet_emitter = get_node('bullet_emitter')
 
+@export var ignore_player = false
+
+
+var state = 'idle'
 
 
 func _ready() -> void:
 	add_to_group('kickable')
 	add_to_group('bullet_immune')
+
+func _process(_delta: float) -> void:
+	if ignore_player:
+		bullet_emitter.emitting = false
+		return
+
+	bullet_emitter.emitting = player_detector.detecting_player
 
 func _physics_process(_delta: float) -> void:
 	look_at(player.global_position)

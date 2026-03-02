@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://5w528g1u6c6s" path="res://imported_assets/kenney_prototype-kit/Models/GLB format/figurine.glb" id="1_6n8dw"]
 [ext_resource type="PhysicsMaterial" uid="uid://coatu8qi5pt85" path="res://bouncy.tres" id="1_yfjof"]
 [ext_resource type="Script" uid="uid://d1hfoplonmk0p" path="res://scripts/enemy.gd" id="2_cypye"]
-[ext_resource type="Script" uid="uid://ge8stiyebafm" path="res://scripts/bullet_emitter.gd" id="3_qnk7q"]
-[ext_resource type="PackedScene" uid="uid://bmapeiiwuahgy" path="res://prefabs/bullet.tscn" id="4_2nw32"]
+[ext_resource type="PackedScene" uid="uid://da27h03y8lmfm" path="res://prefabs/player_detector.tscn" id="3_2nw32"]
 [ext_resource type="Material" uid="uid://cf1ovlrnf06d5" path="res://materials/flash_white.tres" id="4_aivmq"]
+[ext_resource type="PackedScene" uid="uid://cnjdbt262y6uw" path="res://prefabs/bullet_emitter.tscn" id="4_u6on0"]
 [ext_resource type="PackedScene" uid="uid://caorka4hqulq5" path="res://prefabs/anim_take_damage.tscn" id="5_aivmq"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yfjof"]
@@ -24,9 +24,9 @@ max_contacts_reported = 16
 angular_damp = 2.0
 script = ExtResource("2_cypye")
 
-[node name="bullet_emitter" type="Node3D" parent="."]
-script = ExtResource("3_qnk7q")
-bullet_prefab = ExtResource("4_2nw32")
+[node name="player_detector" parent="." instance=ExtResource("3_2nw32")]
+
+[node name="bullet_emitter" parent="." instance=ExtResource("4_u6on0")]
 
 [node name="visual" type="Node3D" parent="."]
 

@@ -6,6 +6,19 @@ Man kan "sparke" barrels og fjender rundt, og de har indikatorer for at de tager
 
 Objekter støder på mure og bliver reflekteret
 
+# 26-03-02
+
+Givet fjende et våben
+
+Skabt line-of-sight system mellem fjender og spiller
+
+Skabt NAVGRID til at lave pathfinding
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 
+
+Patrol system til fjender
+
+System til at indikere om 2 punkter er i line of sight med hinanden
+	til brug af navgrid implementation

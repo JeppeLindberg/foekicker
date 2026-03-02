@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c5nlux7e10g54"]
+
+[node name="neighbour_indicator" type="RayCast3D"]
+collision_mask = 0
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.4630528, 0.2609035, 0.29430214, 0.4745098)
