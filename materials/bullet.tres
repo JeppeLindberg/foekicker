@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://connhl5fcor3d"]
+
+[resource]
+emission_enabled = true
+emission = Color(1, 0.75498825, 0.75339454, 1)
+proximity_fade_distance = 10.0
