@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://boegc1j4qaknf"]
+[gd_scene load_steps=2 format=3 uid="uid://boegc1j4qaknf"]
+
+[ext_resource type="Script" uid="uid://bhrar2q4p0vce" path="res://scripts/grid_node.gd" id="1_5f1a1"]
 
 [node name="grid_node" type="Node3D"]
+script = ExtResource("1_5f1a1")
 
 [node name="visual" type="Node3D" parent="."]
 

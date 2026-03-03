@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://blu5peffefbi8"]
+[gd_scene load_steps=10 format=3 uid="uid://blu5peffefbi8"]
 
 [ext_resource type="PackedScene" uid="uid://5w528g1u6c6s" path="res://imported_assets/kenney_prototype-kit/Models/GLB format/figurine.glb" id="1_6n8dw"]
 [ext_resource type="PhysicsMaterial" uid="uid://coatu8qi5pt85" path="res://bouncy.tres" id="1_yfjof"]
 [ext_resource type="Script" uid="uid://d1hfoplonmk0p" path="res://scripts/enemy.gd" id="2_cypye"]
 [ext_resource type="PackedScene" uid="uid://da27h03y8lmfm" path="res://prefabs/player_detector.tscn" id="3_2nw32"]
+[ext_resource type="PackedScene" uid="uid://0mo4cpm4dt3k" path="res://prefabs/pathfinding.tscn" id="3_u6on0"]
 [ext_resource type="Material" uid="uid://cf1ovlrnf06d5" path="res://materials/flash_white.tres" id="4_aivmq"]
 [ext_resource type="PackedScene" uid="uid://cnjdbt262y6uw" path="res://prefabs/bullet_emitter.tscn" id="4_u6on0"]
 [ext_resource type="PackedScene" uid="uid://caorka4hqulq5" path="res://prefabs/anim_take_damage.tscn" id="5_aivmq"]
@@ -23,6 +24,8 @@ contact_monitor = true
 max_contacts_reported = 16
 angular_damp = 2.0
 script = ExtResource("2_cypye")
+
+[node name="pathfinding" parent="." instance=ExtResource("3_u6on0")]
 
 [node name="player_detector" parent="." instance=ExtResource("3_2nw32")]
 

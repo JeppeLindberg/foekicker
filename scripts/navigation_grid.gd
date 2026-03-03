@@ -1,6 +1,9 @@
 @tool
 extends Node3D
 
+@export var main: Node3D
+@export var pathfinding_mgt: Node3D
+
 @export var force_display_play_mode = false
 
 @export var grid_node: PackedScene
@@ -30,8 +33,8 @@ func clear():
 
 func recreate():
 	force_display_play_mode = false
-	for child in get_children():
-		child.queue_free()
+	
+	clear()
 
 	frontier = []
 	explored_vectors = []
@@ -42,16 +45,28 @@ func recreate():
 
 	print('discover neighbours')
 
+	var nodes_to_delete = []
+
 	for from in get_children():
 		for to in get_children():
 			if from.global_position.distance_to(to.global_position) < distance_between_nodes * 1.2:
-				var neighbour_indicator = neighbour_prefab.instantiate()
-				from.add_child(neighbour_indicator)
-				neighbour_indicator.owner = get_tree().edited_scene_root
-				neighbour_indicator.global_position = from.global_position
-				neighbour_indicator.target_position = to.global_position - from.global_position
+				if pathfinding_mgt.is_los_connected(from.global_position, to.global_position):
+					var neighbour_indicator = neighbour_prefab.instantiate()
+					from.add_child(neighbour_indicator)
+					neighbour_indicator.owner = get_tree().edited_scene_root
+					neighbour_indicator.global_position = from.global_position
+					neighbour_indicator.target_position = to.global_position - from.global_position
+					from.neighbours.append(to)
+
+		if len(from.neighbours) == 0:
+			nodes_to_delete.append(from)
+		else:
+			from.neighbours.make_read_only()
 
 		await get_tree().create_timer(0.02).timeout
+	
+	for i in range(len(nodes_to_delete) -1, -1, -1):
+		nodes_to_delete[i].queue_free()
 
 	print('done')
 
@@ -98,9 +113,14 @@ func explore_frontier():
 		await explore_frontier()
 	
 
+func get_closest_nav_node(pos):
+	var distance = 9999.9
+	var result = null
+	for child in get_children():
+		var dist = pos.distance_to(child.global_position)
+		if dist < distance:
+			distance = dist
+			result = child
 			
-
-
-		
-
+	return result
 

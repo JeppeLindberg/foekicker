@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 @export_flags_2d_physics var basic_layer

@@ -14,6 +14,14 @@ Skabt line-of-sight system mellem fjender og spiller
 
 Skabt NAVGRID til at lave pathfinding
 
+# 26-03-03
+
+Navgrid
+
+Pathfinding fungerer nu fint nok til at bruge i spillet
+
+BIG
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 
