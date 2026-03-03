@@ -20,6 +20,7 @@ axis_lock_angular_x = true
 axis_lock_angular_z = true
 mass = 30.0
 physics_material_override = ExtResource("1_yfjof")
+custom_integrator = true
 contact_monitor = true
 max_contacts_reported = 16
 angular_damp = 2.0

@@ -1,9 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://cis7uomon4xln"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://coatu8qi5pt85" path="res://bouncy.tres" id="1_yrrnx"]
 [ext_resource type="Script" uid="uid://dycva5has7cy0" path="res://scripts/barrel.gd" id="2_aifdq"]
 [ext_resource type="Material" uid="uid://cf1ovlrnf06d5" path="res://materials/flash_white.tres" id="3_hnqqc"]
 [ext_resource type="PackedScene" uid="uid://caorka4hqulq5" path="res://prefabs/anim_take_damage.tscn" id="3_jdlnv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jdlnv"]
+friction = 0.0
+bounce = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8um6o"]
 albedo_color = Color(0.7607843, 0.3254902, 0.30980393, 1)
@@ -19,11 +22,10 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 30.0
-physics_material_override = ExtResource("1_yrrnx")
+physics_material_override = SubResource("PhysicsMaterial_jdlnv")
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 16
-linear_damp = 2.0
 script = ExtResource("2_aifdq")
 
 [node name="visual" type="Node3D" parent="."]

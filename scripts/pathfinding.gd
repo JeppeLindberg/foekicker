@@ -11,12 +11,23 @@ extends Node3D
 var target_node = null
 var path = []
 var recreate_children = false
+var fast = false
 
-func set_target_node(new_target_node):
+var move_direction = Vector3.ZERO
+
+func _ready() -> void:
+	if pathfinding_mgt == null:
+		pathfinding_mgt = get_node('/root/main/pathfinding_mgt')
 	if navigation_grid == null:
 		navigation_grid = get_node('/root/main/navigation_grid')
 
+func set_target_node(new_target_node):
+	path = []
 	target_node = new_target_node
+
+func clear_target_node():
+	path = []
+	target_node = null
 
 func _process(_delta):
 	if Engine.is_editor_hint():
@@ -36,7 +47,20 @@ func _process(_delta):
 	if target_node == null:
 		return
 
-	await create_path(global_position, target_node.global_position)
+	if path == []:
+		fast = true
+		await create_path(global_position, target_node.global_position)
+
+	if path != []:
+		if (global_position*Vector3(1.0,0.0,1.0)).distance_to(path[0].global_position*Vector3(1.0,0.0,1.0)) < 0.5:
+			path.pop_front()
+		if path == []:
+			get_parent().pathfinding_finished()
+	
+	if path != []:
+		move_direction = ((path[0].global_position - global_position) * Vector3(1.0,0.0,1.0)).normalized()
+	else:
+		move_direction = Vector3.ZERO
 
 func test():
 	for child in get_children():
@@ -45,6 +69,7 @@ func test():
 	var from = navigation_grid.get_children().pick_random()
 	var to = navigation_grid.get_children().pick_random()
 
+	fast = false
 	await create_path(from.global_position, to.global_position)
 
 
@@ -74,7 +99,8 @@ func create_path(from, to):
 		return
 	
 	recreate_children = true
-	await get_tree().create_timer(0.2).timeout
+	if not fast:
+		await get_tree().create_timer(0.2).timeout
 
 	var cull_attempt_indexes = range(1, len(path) - 1)
 	cull_attempt_indexes.shuffle()
@@ -89,7 +115,8 @@ func create_path(from, to):
 					cull_attempt_indexes[j] -= 1
 		
 			recreate_children = true
-			await get_tree().create_timer(0.2).timeout
+			if not fast:
+				await get_tree().create_timer(0.2).timeout
 
 func explore_frontier():
 	for i in range(len(frontier)-1,-1,-1):
@@ -132,6 +159,3 @@ func retread_path():
 	result.reverse()
 	return result
 		
-
-
-

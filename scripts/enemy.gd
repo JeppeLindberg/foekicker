@@ -11,8 +11,13 @@ extends RigidBody3D
 @export var ignore_player = false
 
 
-var hesitation_time = 0.0
 var state = 'idle'
+
+var move_direction = Vector3.ZERO
+var look_direction = Vector3.ZERO
+
+var hesitation_time = 0.0
+var control = 1.0
 
 
 func _ready() -> void:
@@ -20,9 +25,16 @@ func _ready() -> void:
 	add_to_group('bullet_immune')
 
 func _process(delta: float) -> void:
-	evaluate_state(delta)
-
-	print(patrol_zone.is_pos_inside(global_position))
+	linear_damp = 0.0
+	match state:
+		'idle':
+			evaluate_idle_state(delta)
+		'patrol':
+			move_direction = pathfinding.move_direction
+			if move_direction != Vector3.ZERO:
+				look_direction = move_direction
+		'falling':
+			evaluate_falling_state(delta)
 
 	if ignore_player:
 		bullet_emitter.emitting = false
@@ -30,41 +42,66 @@ func _process(delta: float) -> void:
 
 	bullet_emitter.emitting = player_detector.detecting_player
 
-func _physics_process(_delta: float) -> void:
-	look_at(player.global_position)
+func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
+	if not custom_integrator:
+		return
+
+	match state:
+		'idle', 'patrol':
+			linear_velocity = move_direction
+			if look_direction != Vector3.ZERO:
+				look_at(global_position + look_direction)
+		'aggressive':
+			look_at(player.global_position)
 
 func kick(kick_source_node):
 	var kick_direction = (global_position - kick_source_node.global_position) * Vector3(1.0, 0.0, 1.0).normalized()
-	
+
+	start_falling_state()
+
 	linear_velocity = Vector3.ZERO
+	control = -2.0
+
 	apply_impulse(kick_direction * kick_source_node.kick_force)
+	take_damage()
 
 
 func _on_body_entered(_body: Node) -> void:
-	if Vector3.ZERO.distance_to(linear_velocity) > 1.0:
+	if custom_integrator == false and linear_velocity.length() > 1.0:
 		take_damage()
 
 func take_damage():
 	take_damage_anim.play('take_damage')
 
-func evaluate_state(delta):	
-	var evaluate_new_state = false
-	if hesitation_time < 1.0:
-		if state == 'idle':
-			hesitation_time += delta
-		if hesitation_time >= 1.0:
-			evaluate_new_state = true
+func evaluate_idle_state(delta):
+	move_direction = Vector3.ZERO
 
-	if not evaluate_new_state:
+	var go_to_new_state = false
+	if hesitation_time < 1.0:
+		hesitation_time += delta
+		if hesitation_time >= 1.0:
+			go_to_new_state = true
+
+	if not go_to_new_state:
 		return
 
-	match state:
-		'idle':
-			if patrol_zone != null:
-				start_patrol_state()
+	if patrol_zone != null:
+		start_patrol_state()
+
+func evaluate_falling_state(delta):
+	if control < 1.0:
+		var regain_control_mult = 1.0
+		if linear_velocity.length() < 0.4:
+			regain_control_mult *= 5.0
+			linear_damp = 2.0
+		elif linear_velocity.length() < 0.04:
+			regain_control_mult *= 50.0
+			linear_damp = 3.0
+		control += regain_control_mult * delta
+	else:
+		start_idle_state()
 
 func start_patrol_state():
-	hesitation_time = 0.0
 	state = 'patrol'
 
 	var possible_grid_nodes = []
@@ -74,3 +111,22 @@ func start_patrol_state():
 
 	var target_grid_node = possible_grid_nodes.pick_random()
 	pathfinding.set_target_node(target_grid_node)
+
+func start_idle_state():
+	hesitation_time = 0.0
+	state = 'idle'
+
+	pathfinding.clear_target_node()
+
+func start_falling_state():
+	state = 'falling'
+
+	custom_integrator = false
+
+func pathfinding_finished():
+	pathfinding.clear_target_node()
+
+	match state:
+		'patrol':
+			start_idle_state()
+	
