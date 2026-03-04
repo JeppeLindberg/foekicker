@@ -60,7 +60,7 @@ func kick(kick_source_node):
 	start_falling_state()
 
 	linear_velocity = Vector3.ZERO
-	control = -2.0
+	control = -2.5
 
 	apply_impulse(kick_direction * kick_source_node.kick_force)
 	take_damage()
@@ -91,10 +91,10 @@ func evaluate_idle_state(delta):
 func evaluate_falling_state(delta):
 	if control < 1.0:
 		var regain_control_mult = 1.0
-		if linear_velocity.length() < 0.4:
-			regain_control_mult *= 5.0
+		if linear_velocity.length() < 2.0 or control > 0.2:
+			regain_control_mult *= 2.0
 			linear_damp = 2.0
-		elif linear_velocity.length() < 0.04:
+		elif linear_velocity.length() < 0.04 or control > 0.5:
 			regain_control_mult *= 50.0
 			linear_damp = 3.0
 		control += regain_control_mult * delta
@@ -113,6 +113,7 @@ func start_patrol_state():
 	pathfinding.set_target_node(target_grid_node)
 
 func start_idle_state():
+	custom_integrator = true
 	hesitation_time = 0.0
 	state = 'idle'
 

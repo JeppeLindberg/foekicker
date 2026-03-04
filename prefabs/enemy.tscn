@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://blu5peffefbi8"]
+[gd_scene load_steps=12 format=3 uid="uid://blu5peffefbi8"]
 
 [ext_resource type="PackedScene" uid="uid://5w528g1u6c6s" path="res://imported_assets/kenney_prototype-kit/Models/GLB format/figurine.glb" id="1_6n8dw"]
 [ext_resource type="PhysicsMaterial" uid="uid://coatu8qi5pt85" path="res://bouncy.tres" id="1_yfjof"]
@@ -8,6 +8,8 @@
 [ext_resource type="Material" uid="uid://cf1ovlrnf06d5" path="res://materials/flash_white.tres" id="4_aivmq"]
 [ext_resource type="PackedScene" uid="uid://cnjdbt262y6uw" path="res://prefabs/bullet_emitter.tscn" id="4_u6on0"]
 [ext_resource type="PackedScene" uid="uid://caorka4hqulq5" path="res://prefabs/anim_take_damage.tscn" id="5_aivmq"]
+[ext_resource type="Script" uid="uid://b6bql1bmtsoqy" path="res://scripts/billboarding.gd" id="6_geowp"]
+[ext_resource type="Material" uid="uid://5w22qyr3d4jh" path="res://materials/enemy.tres" id="7_ikd5g"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yfjof"]
 height = 0.6816406
@@ -33,12 +35,36 @@ script = ExtResource("2_cypye")
 [node name="bullet_emitter" parent="." instance=ExtResource("4_u6on0")]
 
 [node name="visual" type="Node3D" parent="."]
+script = ExtResource("6_geowp")
 
 [node name="figurine2" parent="visual" instance=ExtResource("1_6n8dw")]
 transform = Transform3D(1.1781574, 0, 0, 0, 1.1781574, 0, 0, 0, 1.1781574, 0, -0.47705, 0)
 
+[node name="leg-left" parent="visual/figurine2/figurine/root" index="0"]
+surface_material_override/0 = ExtResource("7_ikd5g")
+
+[node name="leg-right" parent="visual/figurine2/figurine/root" index="1"]
+surface_material_override/0 = ExtResource("7_ikd5g")
+
+[node name="torso" parent="visual/figurine2/figurine/root" index="2"]
+surface_material_override/0 = ExtResource("7_ikd5g")
+
+[node name="arm-left" parent="visual/figurine2/figurine/root/torso" index="0"]
+surface_material_override/0 = ExtResource("7_ikd5g")
+
+[node name="arm-right" parent="visual/figurine2/figurine/root/torso" index="1"]
+surface_material_override/0 = ExtResource("7_ikd5g")
+
+[node name="head" parent="visual/figurine2/figurine/root/torso" index="2"]
+surface_material_override/0 = ExtResource("7_ikd5g")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15500364)
+size = Vector3(0.18041992, 0.1081543, 0.11627197)
+
 [node name="flash_white" type="Node3D" parent="."]
 visible = false
+script = ExtResource("6_geowp")
 
 [node name="figurine3" parent="flash_white" instance=ExtResource("1_6n8dw")]
 transform = Transform3D(1.1781574, 0, 0, 0, 1.1781574, 0, 0, 0, 1.1781574, 0, -0.47705, 0)

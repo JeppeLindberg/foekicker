@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://5w22qyr3d4jh"]
+
+[resource]
+albedo_color = Color(0.5803922, 0.6117647, 1, 1)
+billboard_keep_scale = true
+fov_override = 10.0

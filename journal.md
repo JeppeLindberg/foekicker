@@ -22,6 +22,8 @@ Pathfinding fungerer nu fint nok til at bruge i spillet
 
 BIG
 
+Tilføjet pathfinding systemet til patrol systemet, så nu bevæger fjender sig rundt på mappet
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 
