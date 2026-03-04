@@ -10,14 +10,16 @@ func _ready() -> void:
 	add_to_group('bullet_immune')
 
 
-func _process(delta: float) -> void:	
-	if control < 1.0:
+func _process(delta: float) -> void:
+	linear_damp = 0.0
+	
+	if control < 10.0:
 		var regain_control_mult = 1.0
-		if linear_velocity.length() < 0.4:
-			regain_control_mult *= 5.0
+		if linear_velocity.length() < 2.0 or control > 0.2:
+			regain_control_mult *= 2.0
 			linear_damp = 2.0
-		elif linear_velocity.length() < 0.04:
-			regain_control_mult *= 50.0
+		elif linear_velocity.length() < 0.04 or control > 0.5:
+			regain_control_mult *= 5.0
 			linear_damp = 3.0
 		control += regain_control_mult * delta
 

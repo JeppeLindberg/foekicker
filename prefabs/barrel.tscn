@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cis7uomon4xln"]
+[gd_scene load_steps=8 format=3 uid="uid://cis7uomon4xln"]
 
 [ext_resource type="Script" uid="uid://dycva5has7cy0" path="res://scripts/barrel.gd" id="2_aifdq"]
+[ext_resource type="Script" uid="uid://b6bql1bmtsoqy" path="res://scripts/billboarding.gd" id="2_hnqqc"]
 [ext_resource type="Material" uid="uid://cf1ovlrnf06d5" path="res://materials/flash_white.tres" id="3_hnqqc"]
 [ext_resource type="PackedScene" uid="uid://caorka4hqulq5" path="res://prefabs/anim_take_damage.tscn" id="3_jdlnv"]
 
@@ -19,7 +20,6 @@ radius = 0.2265625
 collision_mask = 2
 axis_lock_linear_y = true
 axis_lock_angular_x = true
-axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 30.0
 physics_material_override = SubResource("PhysicsMaterial_jdlnv")
@@ -29,6 +29,7 @@ max_contacts_reported = 16
 script = ExtResource("2_aifdq")
 
 [node name="visual" type="Node3D" parent="."]
+script = ExtResource("2_hnqqc")
 
 [node name="cylinder" type="CSGCylinder3D" parent="visual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25379944, 0)
@@ -41,6 +42,7 @@ material = SubResource("StandardMaterial3D_8um6o")
 
 [node name="flash_white_visual" type="Node3D" parent="."]
 visible = false
+script = ExtResource("2_hnqqc")
 
 [node name="cylinder" type="CSGCylinder3D" parent="flash_white_visual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25379944, 0)

@@ -6,10 +6,12 @@ extends RigidBody3D
 @onready var bullet_emitter = get_node('bullet_emitter')
 @onready var navigation_grid = get_node('/root/main/navigation_grid')
 @onready var pathfinding = get_node('pathfinding')
+@onready var animation_override = get_node('animation_override')
 
 @export var patrol_zone:Area3D
 @export var ignore_player = false
 
+@export var health = 5
 
 var state = 'idle'
 
@@ -18,6 +20,7 @@ var look_direction = Vector3.ZERO
 
 var hesitation_time = 0.0
 var control = 1.0
+var dead = false
 
 
 func _ready() -> void:
@@ -25,7 +28,9 @@ func _ready() -> void:
 	add_to_group('bullet_immune')
 
 func _process(delta: float) -> void:
-	linear_damp = 0.0
+	if not dead:
+		linear_damp = 0.0
+		
 	match state:
 		'idle':
 			evaluate_idle_state(delta)
@@ -36,13 +41,15 @@ func _process(delta: float) -> void:
 		'falling':
 			evaluate_falling_state(delta)
 
-	if ignore_player:
+	if ignore_player or dead:
 		bullet_emitter.emitting = false
 		return
 
 	bullet_emitter.emitting = player_detector.detecting_player
 
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
+	if dead:
+		return
 	if not custom_integrator:
 		return
 
@@ -55,6 +62,9 @@ func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 			look_at(player.global_position)
 
 func kick(kick_source_node):
+	if dead:
+		return
+
 	var kick_direction = (global_position - kick_source_node.global_position) * Vector3(1.0, 0.0, 1.0).normalized()
 
 	start_falling_state()
@@ -73,7 +83,19 @@ func _on_body_entered(_body: Node) -> void:
 func take_damage():
 	take_damage_anim.play('take_damage')
 
+	health -= 1
+
+	if health <= 0 and not dead:
+		dead = true
+		if control < 0.2:
+			control = 0.2
+		animation_override.play('death')
+
+
 func evaluate_idle_state(delta):
+	if dead:
+		return
+
 	move_direction = Vector3.ZERO
 
 	var go_to_new_state = false
@@ -95,7 +117,7 @@ func evaluate_falling_state(delta):
 			regain_control_mult *= 2.0
 			linear_damp = 2.0
 		elif linear_velocity.length() < 0.04 or control > 0.5:
-			regain_control_mult *= 50.0
+			regain_control_mult *= 5.0
 			linear_damp = 3.0
 		control += regain_control_mult * delta
 	else:
@@ -113,6 +135,9 @@ func start_patrol_state():
 	pathfinding.set_target_node(target_grid_node)
 
 func start_idle_state():
+	if dead:
+		return
+		
 	custom_integrator = true
 	hesitation_time = 0.0
 	state = 'idle'
@@ -131,3 +156,6 @@ func pathfinding_finished():
 		'patrol':
 			start_idle_state()
 	
+func _on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == 'death':
+		queue_free()
