@@ -24,6 +24,14 @@ BIG
 
 Tilføjet pathfinding systemet til patrol systemet, så nu bevæger fjender sig rundt på mappet
 
+# 26-03-04
+
+Lavet billboard "shader"
+
+Gjort fjender killable
+
+Skabt blueprint for banen
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 
