@@ -18,9 +18,10 @@ var state = 'idle'
 var move_direction = Vector3.ZERO
 var look_direction = Vector3.ZERO
 
-var hesitation_time = 0.0
+var go_to_patrol_state_timer = 0.0
 var control = 1.0
 var dead = false
+var player_awareness = 0.0
 
 
 func _ready() -> void:
@@ -35,17 +36,12 @@ func _process(delta: float) -> void:
 		'idle':
 			evaluate_idle_state(delta)
 		'patrol':
-			move_direction = pathfinding.move_direction
-			if move_direction != Vector3.ZERO:
-				look_direction = move_direction
+			evaluate_patrol_state(delta)
 		'falling':
 			evaluate_falling_state(delta)
+		'aggressive':
+			evaluate_aggressive_state(delta)
 
-	if ignore_player or dead:
-		bullet_emitter.emitting = false
-		return
-
-	bullet_emitter.emitting = player_detector.detecting_player
 
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	if dead:
@@ -67,7 +63,7 @@ func kick(kick_source_node):
 
 	var kick_direction = (global_position - kick_source_node.global_position) * Vector3(1.0, 0.0, 1.0).normalized()
 
-	start_falling_state()
+	go_to_falling_state()
 
 	linear_velocity = Vector3.ZERO
 	control = -2.5
@@ -96,19 +92,23 @@ func evaluate_idle_state(delta):
 	if dead:
 		return
 
-	move_direction = Vector3.ZERO
-
-	var go_to_new_state = false
-	if hesitation_time < 1.0:
-		hesitation_time += delta
-		if hesitation_time >= 1.0:
-			go_to_new_state = true
-
-	if not go_to_new_state:
+	if try_go_to_aggressive_state(delta):
 		return
 
-	if patrol_zone != null:
-		start_patrol_state()
+	move_direction = Vector3.ZERO
+
+	go_to_patrol_state_timer += delta
+	if go_to_patrol_state_timer >= 1.0:
+		if patrol_zone != null:
+			go_to_patrol_state()
+
+func evaluate_patrol_state(delta):
+	if try_go_to_aggressive_state(delta):
+		return
+
+	move_direction = pathfinding.move_direction
+	if move_direction != Vector3.ZERO:
+		look_direction = move_direction
 
 func evaluate_falling_state(delta):
 	if control < 1.0:
@@ -121,10 +121,37 @@ func evaluate_falling_state(delta):
 			linear_damp = 3.0
 		control += regain_control_mult * delta
 	else:
-		start_idle_state()
+		go_to_idle_state()
 
-func start_patrol_state():
+func evaluate_aggressive_state(delta):
+	if dead:
+		return
+
+	# Implement pathing to the closest valid player enemy movement location, and set emitter.emitting = true when in vision
+
+
+func try_go_to_aggressive_state(delta):
+	if dead:
+		return false
+
+	var prev_player_awareness = player_awareness
+
+	if not (ignore_player or dead):
+		if player_detector.detecting_player:
+			player_awareness += delta
+			if player_awareness > 2.0:
+				player_awareness = 2.0
+	
+	if prev_player_awareness < 1.0 and player_awareness >= 1.0:
+		go_to_aggressive_state()
+		return true
+	
+	return false
+
+func go_to_patrol_state():
 	state = 'patrol'
+
+	custom_integrator = true
 
 	var possible_grid_nodes = []
 	for child in navigation_grid.get_children():
@@ -134,27 +161,37 @@ func start_patrol_state():
 	var target_grid_node = possible_grid_nodes.pick_random()
 	pathfinding.set_target_node(target_grid_node)
 
-func start_idle_state():
+func go_to_idle_state():
 	if dead:
 		return
 		
 	custom_integrator = true
-	hesitation_time = 0.0
+	go_to_patrol_state_timer = 0.0
 	state = 'idle'
 
 	pathfinding.clear_target_node()
 
-func start_falling_state():
+func go_to_falling_state():
 	state = 'falling'
 
 	custom_integrator = false
+
+	pathfinding.clear_target_node()
+
+func go_to_aggressive_state():
+	state = 'aggressive'
+
+	custom_integrator = true
+
+	pathfinding.clear_target_node()
 
 func pathfinding_finished():
 	pathfinding.clear_target_node()
 
 	match state:
 		'patrol':
-			start_idle_state()
+			go_to_idle_state()
+
 	
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == 'death':

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://m1ourwpjmjlq"]
+[gd_scene load_steps=42 format=3 uid="uid://m1ourwpjmjlq"]
 
 [ext_resource type="PackedScene" uid="uid://clp2pnnxmrvrx" path="res://prefabs/grey_block.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://1mm5j6twauxh" path="res://scripts/main.gd" id="1_tbgi4"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://blu5peffefbi8" path="res://prefabs/enemy.tscn" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://78kdt7dftjoa" path="res://scripts/enemy_movement_targets.gd" id="16_0ld40"]
 [ext_resource type="PackedScene" uid="uid://bvanpd565pevq" path="res://prefabs/downward_raycast.tscn" id="17_gqmmt"]
+[ext_resource type="Script" uid="uid://dephrwi8jrih" path="res://scripts/downward_raycast.gd" id="18_yc10j"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ld40"]
 radius = 0.42629856
@@ -164,6 +165,12 @@ bg_color = Color(1, 1, 1, 1)
 [node name="main" type="Node3D"]
 script = ExtResource("1_tbgi4")
 basic_layer = 3
+
+[node name="environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_o6xl0")
+script = ExtResource("2_tefeu")
+editor_environment = ExtResource("2_o6xl0")
+play_mode_environment = ExtResource("2_tipki")
 
 [node name="pathfinding" parent="." node_paths=PackedStringArray("navigation_grid", "pathfinding_mgt") instance=ExtResource("2_muem4")]
 navigation_grid = NodePath("../navigation_grid")
@@ -11682,12 +11689,6 @@ script = ExtResource("6_jbj1t")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030676365, -0.33050537, -0.24262619)
 shape = SubResource("BoxShape3D_y6deb")
 
-[node name="environment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_o6xl0")
-script = ExtResource("2_tefeu")
-editor_environment = ExtResource("2_o6xl0")
-play_mode_environment = ExtResource("2_tipki")
-
 [node name="light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 light_color = Color(1, 0.3019608, 0.28627452, 1)
@@ -12910,53 +12911,69 @@ script = ExtResource("16_0ld40")
 distance_from_player = 3.0
 downward_raycasts_prefab = ExtResource("17_gqmmt")
 
-[node name="@RayCast3D@22602" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="downward_raycast" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(0, -0.96, 6)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22603" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21716" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(2.2961006, -0.96, 5.543277)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22604" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21717" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(4.2426405, -0.96, 4.2426405)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22605" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21718" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(5.543277, -0.96, 2.2961006)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22606" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21719" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(6, -0.96, -2.6226832e-07)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22607" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21720" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(5.5432773, -0.96, -2.2961004)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22608" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21721" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(4.2426405, -0.96, -4.2426405)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22609" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21722" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(2.2961009, -0.96, -5.543277)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22610" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21723" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-5.2453663e-07, -0.96, -6)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22611" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21724" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-2.2961006, -0.96, -5.543277)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22612" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21725" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-4.2426405, -0.96, -4.242641)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22613" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21726" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-5.543277, -0.96, -2.2961016)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22614" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21727" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-6, -0.96, 7.154928e-08)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22615" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21728" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-5.543277, -0.96, 2.2961016)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22616" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21729" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-4.2426414, -0.96, 4.24264)
+script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@22617" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21730" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-2.2961006, -0.96, 5.5432773)
+script = ExtResource("18_yc10j")
 
 [node name="enemies" type="Node3D" parent="."]
 

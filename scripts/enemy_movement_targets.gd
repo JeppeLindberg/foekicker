@@ -4,7 +4,7 @@ extends Node3D
 
 @export var distance_from_player = 5.0
 @export var n_gon = 16
-@export var downward_raycasts_prefab: PackedScene
+@export var downward_raycasts_prefab: PackedScene 
 @export var player_head_to_ground = Vector3.DOWN * 0.48
 
 @export_tool_button("Recreate", "Callable") var recreate_callable = recreate
@@ -26,4 +26,13 @@ func recreate():
 		new_raycast.owner = get_tree().edited_scene_root
 		new_raycast.position = Vector3.ZERO
 		new_raycast.target_position = new_target * 2.0
+		var gizmo = new_raycast.get_child(0)
+		gizmo.position = new_target
 
+
+func get_valid_targets():
+	var results = []
+	for child in get_children():
+		if child.valid:
+			results.append(child.get_child(0))
+	return results

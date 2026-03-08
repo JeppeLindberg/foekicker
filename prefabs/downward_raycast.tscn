@@ -5,3 +5,5 @@
 [node name="downward_raycast" type="RayCast3D"]
 target_position = Vector3(0, -20, 0)
 script = ExtResource("1_1qs7n")
+
+[node name="gizmo" type="Node3D" parent="."]

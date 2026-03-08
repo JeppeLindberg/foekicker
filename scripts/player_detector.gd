@@ -11,6 +11,9 @@ func _process(_delta: float) -> void:
 	raycast.global_position = global_position
 	raycast.target_position = player.global_position - raycast.global_position
 
+	if raycast.global_position.distance_to(raycast.target_position) > 11.0:
+		detecting_player = false
+
 	var node = raycast.get_collider()
 	if node != null and node.is_in_group('player'):
 		detecting_player = true
