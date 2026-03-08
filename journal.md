@@ -32,6 +32,10 @@ Gjort fjender killable
 
 Skabt blueprint for banen
 
+# 26-03-05
+
+Oprettet map for real
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 
