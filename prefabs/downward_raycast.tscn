@@ -4,6 +4,12 @@
 
 [node name="downward_raycast" type="RayCast3D"]
 target_position = Vector3(0, -20, 0)
+collision_mask = 257
 script = ExtResource("1_1qs7n")
 
 [node name="gizmo" type="Node3D" parent="."]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="gizmo"]
+radius = 0.2
+radial_segments = 6
+rings = 3

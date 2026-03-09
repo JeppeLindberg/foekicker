@@ -24,10 +24,12 @@ func _ready() -> void:
 func set_target_node(new_target_node):
 	path = []
 	target_node = new_target_node
+	move_direction = Vector3.ZERO
 
 func clear_target_node():
 	path = []
 	target_node = null
+	move_direction = Vector3.ZERO
 
 func _process(_delta):
 	if Engine.is_editor_hint():

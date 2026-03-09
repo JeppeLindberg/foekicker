@@ -22,6 +22,7 @@ var go_to_patrol_state_timer = 0.0
 var control = 1.0
 var dead = false
 var player_awareness = 0.0
+var reevalute_path_timer = 0.0
 
 
 func _ready() -> void:
@@ -55,6 +56,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 			if look_direction != Vector3.ZERO:
 				look_at(global_position + look_direction)
 		'aggressive':
+			linear_velocity = move_direction
 			look_at(player.global_position)
 
 func kick(kick_source_node):
@@ -126,8 +128,17 @@ func evaluate_falling_state(delta):
 func evaluate_aggressive_state(delta):
 	if dead:
 		return
+		
+	reevalute_path_timer += delta;
 
-	# Implement pathing to the closest valid player enemy movement location, and set emitter.emitting = true when in vision
+	if (pathfinding.target_node == null) or (reevalute_path_timer >= 1.0):
+		reevalute_path_timer = 0.0
+		var possible_player_nodes = player.get_valid_enemy_movement_targets()
+
+		if possible_player_nodes != []:
+			pathfinding.set_target_node(possible_player_nodes.pick_random())
+	
+	move_direction = pathfinding.move_direction
 
 
 func try_go_to_aggressive_state(delta):
@@ -142,6 +153,7 @@ func try_go_to_aggressive_state(delta):
 			if player_awareness > 2.0:
 				player_awareness = 2.0
 	
+
 	if prev_player_awareness < 1.0 and player_awareness >= 1.0:
 		go_to_aggressive_state()
 		return true
@@ -151,6 +163,7 @@ func try_go_to_aggressive_state(delta):
 func go_to_patrol_state():
 	state = 'patrol'
 
+	bullet_emitter.emitting = false
 	custom_integrator = true
 
 	var possible_grid_nodes = []
@@ -165,6 +178,7 @@ func go_to_idle_state():
 	if dead:
 		return
 		
+	bullet_emitter.emitting = false
 	custom_integrator = true
 	go_to_patrol_state_timer = 0.0
 	state = 'idle'
@@ -174,6 +188,7 @@ func go_to_idle_state():
 func go_to_falling_state():
 	state = 'falling'
 
+	bullet_emitter.emitting = false
 	custom_integrator = false
 
 	pathfinding.clear_target_node()
@@ -181,6 +196,7 @@ func go_to_falling_state():
 func go_to_aggressive_state():
 	state = 'aggressive'
 
+	bullet_emitter.emitting = true
 	custom_integrator = true
 
 	pathfinding.clear_target_node()

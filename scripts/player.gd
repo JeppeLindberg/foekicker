@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var head = get_node('head')
 @onready var kick_timer = get_node('kick_timer')
 @onready var full_screen_effect_mgt = get_node('/root/main/full_screen_effect_mgt')
+@onready var enemy_movement_targets = get_node('enemy_movement_targets')
 
 var rotation_target: Vector3 = Vector3.ZERO
 
@@ -96,4 +97,5 @@ func _input(event):
 		rotation_target.y -= event.relative.x / mouse_sensitivity
 		rotation_target.x -= event.relative.y / mouse_sensitivity
 
-		
+func get_valid_enemy_movement_targets():
+	return enemy_movement_targets.get_valid_targets()

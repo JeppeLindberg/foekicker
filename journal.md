@@ -36,6 +36,10 @@ Skabt blueprint for banen
 
 Oprettet map for real
 
+# 26-03-08
+
+Oprettet system til at få fjender til at move til player indenfor vision
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 

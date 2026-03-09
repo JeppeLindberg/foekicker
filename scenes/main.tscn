@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://m1ourwpjmjlq"]
+[gd_scene load_steps=41 format=3 uid="uid://m1ourwpjmjlq"]
 
 [ext_resource type="PackedScene" uid="uid://clp2pnnxmrvrx" path="res://prefabs/grey_block.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://1mm5j6twauxh" path="res://scripts/main.gd" id="1_tbgi4"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://blu5peffefbi8" path="res://prefabs/enemy.tscn" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://78kdt7dftjoa" path="res://scripts/enemy_movement_targets.gd" id="16_0ld40"]
 [ext_resource type="PackedScene" uid="uid://bvanpd565pevq" path="res://prefabs/downward_raycast.tscn" id="17_gqmmt"]
-[ext_resource type="Script" uid="uid://dephrwi8jrih" path="res://scripts/downward_raycast.gd" id="18_yc10j"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ld40"]
 radius = 0.42629856
@@ -12911,161 +12910,127 @@ script = ExtResource("16_0ld40")
 distance_from_player = 3.0
 downward_raycasts_prefab = ExtResource("17_gqmmt")
 
-[node name="downward_raycast" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="downward_raycast" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(0, -0.96, 6)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21716" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21716" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(2.2961006, -0.96, 5.543277)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21717" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21717" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(4.2426405, -0.96, 4.2426405)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21718" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21718" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(5.543277, -0.96, 2.2961006)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21719" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21719" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(6, -0.96, -2.6226832e-07)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21720" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21720" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(5.5432773, -0.96, -2.2961004)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21721" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21721" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(4.2426405, -0.96, -4.2426405)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21722" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21722" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(2.2961009, -0.96, -5.543277)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21723" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21723" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-5.2453663e-07, -0.96, -6)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21724" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21724" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-2.2961006, -0.96, -5.543277)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21725" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21725" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-4.2426405, -0.96, -4.242641)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21726" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21726" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-5.543277, -0.96, -2.2961016)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21727" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21727" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-6, -0.96, 7.154928e-08)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21728" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21728" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-5.543277, -0.96, 2.2961016)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21729" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21729" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-4.2426414, -0.96, 4.24264)
-script = ExtResource("18_yc10j")
 
-[node name="@RayCast3D@21730" type="RayCast3D" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
+[node name="@RayCast3D@21730" parent="player/enemy_movement_targets" instance=ExtResource("17_gqmmt")]
 target_position = Vector3(-2.2961006, -0.96, 5.5432773)
-script = ExtResource("18_yc10j")
 
 [node name="enemies" type="Node3D" parent="."]
 
 [node name="enemy" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8023148, -2.3841858e-07, -9.113859)
 patrol_zone = NodePath("../../zones/patrol_1")
-ignore_player = true
 
 [node name="enemy2" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.197685, -2.3841858e-07, -14.113859)
 patrol_zone = NodePath("../../zones/patrol_2")
-ignore_player = true
 
 [node name="enemy3" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1976852, -2.3841858e-07, -15.113859)
 patrol_zone = NodePath("../../zones/patrol_2")
-ignore_player = true
 
 [node name="enemy4" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.551274, 7.1525574e-07, -22.733013)
 patrol_zone = NodePath("../../zones/patrol_6")
-ignore_player = true
 
 [node name="enemy5" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5512743, 7.1525574e-07, -22.733013)
 patrol_zone = NodePath("../../zones/patrol_12")
-ignore_player = true
 
 [node name="enemy6" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1309495, 7.1525574e-07, -24.282099)
 patrol_zone = NodePath("../../zones/patrol_3")
-ignore_player = true
 
 [node name="enemy7" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.43992, 7.1525574e-07, -24.320738)
 patrol_zone = NodePath("../../zones/patrol_5")
-ignore_player = true
 
 [node name="enemy8" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.615671, 7.1525574e-07, -29.038507)
 patrol_zone = NodePath("../../zones/patrol_7")
-ignore_player = true
 
 [node name="enemy9" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.568682, 7.1525574e-07, -26.842697)
 patrol_zone = NodePath("../../zones/patrol_7")
-ignore_player = true
 
 [node name="enemy10" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.233084, 7.1525574e-07, -24.609877)
 patrol_zone = NodePath("../../zones/patrol_7")
-ignore_player = true
 
 [node name="enemy11" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.878963, 7.1525574e-07, -32.357918)
 patrol_zone = NodePath("../../zones/patrol_8")
-ignore_player = true
 
 [node name="enemy12" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.528425, 7.1525574e-07, -30.329622)
 patrol_zone = NodePath("../../zones/patrol_8")
-ignore_player = true
 
 [node name="enemy13" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.963728, 7.1525574e-07, -33.724754)
 patrol_zone = NodePath("../../zones/patrol_8")
-ignore_player = true
 
 [node name="enemy14" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6511273, 7.1525574e-07, -47.179737)
 patrol_zone = NodePath("../../zones/patrol_9")
-ignore_player = true
 
 [node name="enemy15" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5682516, 7.1525574e-07, -48.18941)
 patrol_zone = NodePath("../../zones/patrol_9")
-ignore_player = true
 
 [node name="enemy16" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.563448, 7.1525574e-07, -46.800747)
 patrol_zone = NodePath("../../zones/patrol_10")
-ignore_player = true
 
 [node name="enemy17" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.914241, 7.1525574e-07, -47.785725)
 patrol_zone = NodePath("../../zones/patrol_10")
-ignore_player = true
 
 [node name="enemy18" parent="enemies" node_paths=PackedStringArray("patrol_zone") instance=ExtResource("12_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8813963, 7.1525574e-07, -41.709965)
 patrol_zone = NodePath("../../zones/patrol_11")
-ignore_player = true
 
 [node name="barrel" parent="." instance=ExtResource("7_choun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7321634, 0, -7.1939955)

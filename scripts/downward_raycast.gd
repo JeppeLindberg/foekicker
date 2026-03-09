@@ -3,10 +3,13 @@ extends RayCast3D
 var valid = false
 var movement_position = Vector3.ZERO
 
+@onready var gizmo = get_node('gizmo')
+
 
 func _physics_process(_delta: float) -> void:
 	valid = false
 	movement_position = Vector3.ZERO
+	gizmo.visible = false
 	if not is_colliding():
 		return
 
@@ -16,5 +19,6 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	if current_result.is_in_group('navgrid'):
+		gizmo.visible = true
 		valid = true
 		movement_position = get_collision_point()
