@@ -46,6 +46,12 @@ Fjender bruger nu pathfinding til at holde vision af spiller
 
 Oprettet sketch collage for fjender 3d model
 
+# 26-03-10
+
+Oprettet blender projekt for statuer
+
+Begyndt at forme statuer
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 

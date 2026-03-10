@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=3 format=3 uid="uid://dhbrpk5707yve"]
+[gd_resource type="Environment" format=3 uid="uid://dhbrpk5707yve"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tbgi4"]
 sky_top_color = Color(0.20169425, 0.023494327, 0.1905509, 1)
