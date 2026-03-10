@@ -40,6 +40,12 @@ Oprettet map for real
 
 Oprettet system til at få fjender til at move til player indenfor vision
 
+# 26-03-09
+
+Fjender bruger nu pathfinding til at holde vision af spiller
+
+Oprettet sketch collage for fjender 3d model
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 
