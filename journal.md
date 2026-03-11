@@ -52,6 +52,10 @@ Oprettet blender projekt for statuer
 
 Begyndt at forme statuer
 
+# 26-03-11
+
+Arbejdet videre på 3d model statue
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 
