@@ -166,10 +166,11 @@ script = ExtResource("1_tbgi4")
 basic_layer = 3
 
 [node name="environment" type="WorldEnvironment" parent="." unique_id=1664060635]
-environment = ExtResource("2_o6xl0")
+environment = ExtResource("2_tipki")
 script = ExtResource("2_tefeu")
 editor_environment = ExtResource("2_o6xl0")
 play_mode_environment = ExtResource("2_tipki")
+force_play_mode_env = true
 
 [node name="pathfinding" parent="." unique_id=40397940 node_paths=PackedStringArray("navigation_grid", "pathfinding_mgt") instance=ExtResource("2_muem4")]
 navigation_grid = NodePath("../navigation_grid")

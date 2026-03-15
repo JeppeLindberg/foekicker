@@ -22,3 +22,6 @@ fog_density = 1.0
 fog_depth_begin = 0.0
 fog_depth_end = 15.0
 adjustment_enabled = true
+adjustment_brightness = 1.35
+adjustment_contrast = 1.08
+adjustment_saturation = 1.07
