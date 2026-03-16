@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cis7uomon4xln"]
+[gd_scene format=3 uid="uid://cis7uomon4xln"]
 
 [ext_resource type="Script" uid="uid://dycva5has7cy0" path="res://scripts/barrel.gd" id="2_aifdq"]
 [ext_resource type="Script" uid="uid://b6bql1bmtsoqy" path="res://scripts/billboarding.gd" id="2_hnqqc"]
@@ -16,7 +16,7 @@ albedo_color = Color(0.7607843, 0.3254902, 0.30980393, 1)
 height = 0.4281006
 radius = 0.2265625
 
-[node name="barrel" type="RigidBody3D"]
+[node name="barrel" type="RigidBody3D" unique_id=515751819]
 collision_mask = 2
 axis_lock_linear_y = true
 axis_lock_angular_x = true
@@ -27,11 +27,12 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 16
 script = ExtResource("2_aifdq")
+kickable_layer = 1
 
-[node name="visual" type="Node3D" parent="."]
+[node name="visual" type="Node3D" parent="." unique_id=1975983073]
 script = ExtResource("2_hnqqc")
 
-[node name="cylinder" type="CSGCylinder3D" parent="visual"]
+[node name="cylinder" type="CSGCylinder3D" parent="visual" unique_id=1203357883]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25379944, 0)
 collision_layer = 2
 collision_mask = 2
@@ -40,11 +41,11 @@ height = 0.42282104
 sides = 12
 material = SubResource("StandardMaterial3D_8um6o")
 
-[node name="flash_white_visual" type="Node3D" parent="."]
+[node name="flash_white_visual" type="Node3D" parent="." unique_id=1114539905]
 visible = false
 script = ExtResource("2_hnqqc")
 
-[node name="cylinder" type="CSGCylinder3D" parent="flash_white_visual"]
+[node name="cylinder" type="CSGCylinder3D" parent="flash_white_visual" unique_id=2140646573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25379944, 0)
 collision_layer = 2
 collision_mask = 2
@@ -53,11 +54,11 @@ height = 0.42282104
 sides = 12
 material = ExtResource("3_hnqqc")
 
-[node name="shape" type="CollisionShape3D" parent="."]
+[node name="shape" type="CollisionShape3D" parent="." unique_id=1819686981]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23603821, 0)
 shape = SubResource("CylinderShape3D_85g3d")
 
-[node name="take_damage" parent="." node_paths=PackedStringArray("normal_visual", "flash_white_visual") instance=ExtResource("3_jdlnv")]
+[node name="take_damage" parent="." unique_id=990032400 node_paths=PackedStringArray("normal_visual", "flash_white_visual") instance=ExtResource("3_jdlnv")]
 flash_white = false
 normal_visual = NodePath("../visual")
 flash_white_visual = NodePath("../flash_white_visual")

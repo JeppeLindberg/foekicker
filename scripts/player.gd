@@ -50,7 +50,7 @@ func _process(_delta):
 			if not node in immune_to_kick:
 				immune_to_kick.append(node)
 				if node.is_in_group('kickable'):
-					node.kick(self)
+					node.kick(global_position, kick_force)
 
 
 func handle_controls(_delta):

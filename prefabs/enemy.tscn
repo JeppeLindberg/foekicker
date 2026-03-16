@@ -44,6 +44,7 @@ contact_monitor = true
 max_contacts_reported = 16
 angular_damp = 2.0
 script = ExtResource("2_cypye")
+kickable_layer = 1
 
 [node name="pathfinding" parent="." unique_id=1888751648 instance=ExtResource("3_u6on0")]
 

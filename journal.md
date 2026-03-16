@@ -56,6 +56,12 @@ Begyndt at forme statuer
 
 Arbejdet videre på 3d model statue
 
+# 26-03-15
+
+Endelig tilfreds med simpel statue
+
+Tilføjet dem til spillet
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 

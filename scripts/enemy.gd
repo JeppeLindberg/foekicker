@@ -1,5 +1,7 @@
 extends RigidBody3D
 
+@export_flags_2d_physics var kickable_layer
+
 @onready var player = get_node('/root/main/player')
 @onready var take_damage_anim = get_node('take_damage')
 @onready var player_detector = get_node('player_detector')
@@ -7,22 +9,26 @@ extends RigidBody3D
 @onready var navigation_grid = get_node('/root/main/navigation_grid')
 @onready var pathfinding = get_node('pathfinding')
 @onready var animation_override = get_node('animation_override')
+@onready var main = get_node('/root/main')
+@onready var shape = get_node('shape')
 
 @export var patrol_zone:Area3D
 @export var ignore_player = false
 
-@export var health = 5
+@export var health = 10
 
 var state = 'idle'
 
 var move_direction = Vector3.ZERO
 var look_direction = Vector3.ZERO
+var prev_position = Vector3.ZERO
 
 var go_to_patrol_state_timer = 0.0
 var control = 1.0
 var dead = false
 var player_awareness = 0.0
 var reevalute_path_timer = 0.0
+var hit_nodes = []
 
 
 func _ready() -> void:
@@ -42,6 +48,18 @@ func _process(delta: float) -> void:
 			evaluate_falling_state(delta)
 		'aggressive':
 			evaluate_aggressive_state(delta)
+	
+func _physics_process(_delta: float) -> void:
+	if not custom_integrator:
+		var collisions = main.get_nodes_in_shape(shape, 'kickable', kickable_layer, global_position - prev_position)
+		collisions.erase(self)
+		for node in collisions:
+			if node not in hit_nodes:
+				node.kick(prev_position, linear_velocity.length() * 50.0)
+				linear_velocity *= 0.75
+				hit_nodes.append(node)
+
+		prev_position = global_position
 
 
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
@@ -59,20 +77,19 @@ func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 			linear_velocity = move_direction
 			look_at(player.global_position)
 
-func kick(kick_source_node):
+func kick(source_position, force):
 	if dead:
 		return
 
-	var kick_direction = (global_position - kick_source_node.global_position) * Vector3(1.0, 0.0, 1.0).normalized()
+	var kick_direction = (global_position - source_position) * Vector3(1.0, 0.0, 1.0).normalized()
 
 	go_to_falling_state()
 
-	linear_velocity = Vector3.ZERO
+	hit_nodes = []
 	control = -2.5
 
-	apply_impulse(kick_direction * kick_source_node.kick_force)
+	apply_impulse(kick_direction * force)
 	take_damage()
-
 
 func _on_body_entered(_body: Node) -> void:
 	if custom_integrator == false and linear_velocity.length() > 1.0:
@@ -186,10 +203,14 @@ func go_to_idle_state():
 	pathfinding.clear_target_node()
 
 func go_to_falling_state():
+	if state == 'falling':
+		return
+
 	state = 'falling'
 
 	bullet_emitter.emitting = false
 	custom_integrator = false
+	prev_position = global_position
 
 	pathfinding.clear_target_node()
 

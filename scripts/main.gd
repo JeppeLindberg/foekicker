@@ -24,4 +24,3 @@ func get_nodes_in_shape(collider, group = '', collision_mask = 0, motion = Vecto
 		if (group == '') or node.is_in_group(group):
 			nodes.append(node)
 	return nodes
-
