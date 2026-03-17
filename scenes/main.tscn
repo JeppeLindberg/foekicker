@@ -2,13 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://clp2pnnxmrvrx" path="res://prefabs/grey_block.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://1mm5j6twauxh" path="res://scripts/main.gd" id="1_tbgi4"]
-[ext_resource type="Script" uid="uid://bt124crxgn3y7" path="res://scripts/player.gd" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://f6440ctwpnug" path="res://scripts/full_screen_effect_mgt.gd" id="2_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://0mo4cpm4dt3k" path="res://prefabs/pathfinding.tscn" id="2_muem4"]
 [ext_resource type="Environment" uid="uid://c8l66ertqumv7" path="res://environments/debug.tres" id="2_o6xl0"]
 [ext_resource type="Script" uid="uid://dfe4nsxda8pq3" path="res://scripts/environment.gd" id="2_tefeu"]
 [ext_resource type="Environment" uid="uid://dhbrpk5707yve" path="res://environments/play_mode.tres" id="2_tipki"]
-[ext_resource type="Script" uid="uid://c3kmv253rtgp3" path="res://scripts/kick_timer.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://lfa1dtvroorj" path="res://scripts/ui.gd" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://n7yv55jjiabr" path="res://scripts/navigation_grid.gd" id="3_trceg"]
 [ext_resource type="Script" uid="uid://ciow5lscrybbi" path="res://scripts/pathfinding_mgt.gd" id="4_0ld40"]
@@ -18,8 +16,7 @@
 [ext_resource type="Script" uid="uid://bvgykcvjiursu" path="res://scripts/area.gd" id="6_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cis7uomon4xln" path="res://prefabs/barrel.tscn" id="7_choun"]
 [ext_resource type="PackedScene" uid="uid://blu5peffefbi8" path="res://prefabs/enemy.tscn" id="12_eb6dy"]
-[ext_resource type="Script" uid="uid://78kdt7dftjoa" path="res://scripts/enemy_movement_targets.gd" id="16_0ld40"]
-[ext_resource type="PackedScene" uid="uid://bvanpd565pevq" path="res://prefabs/downward_raycast.tscn" id="17_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://bwautbvmih1xk" path="res://prefabs/player.tscn" id="14_muem4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ld40"]
 radius = 0.42629856
@@ -89,74 +86,6 @@ size = Vector3(6.3553495, 2.578247, 6.1925435)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y6deb"]
 size = Vector3(3.016007, 2.578247, 3.7927647)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_o5qli"]
-radius = 0.3451514
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ya4ey"]
-radius = 0.36767578
-height = 1.0107422
-
-[sub_resource type="Animation" id="Animation_jyhfs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("kick_timer:ui_visibility")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("kick_timer:kick_connecting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_sugp2"]
-resource_name = "kick"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("kick_timer:ui_visibility")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666669, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 1.0, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("kick_timer:kick_connecting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.43333334),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jyhfs"]
-_data = {
-&"RESET": SubResource("Animation_jyhfs"),
-&"kick": SubResource("Animation_sugp2")
-}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
 bg_color = Color(1, 1, 1, 1)
@@ -12876,84 +12805,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -38)
 [node name="grey_floor53" parent="static/floor" unique_id=56405025 instance=ExtResource("6_85g3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -38)
 
-[node name="player" type="CharacterBody3D" parent="." unique_id=218267179 node_paths=PackedStringArray("kick_detector")]
+[node name="player" parent="." unique_id=568664319 instance=ExtResource("14_muem4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.791979, 0, 1.561966)
-collision_mask = 2
-axis_lock_linear_y = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-script = ExtResource("2_0wfyh")
-kick_detector = NodePath("head/kick_detector")
-
-[node name="shape" type="CollisionShape3D" parent="player" unique_id=886608159]
-shape = SubResource("SphereShape3D_o5qli")
-
-[node name="head" type="Node3D" parent="player" unique_id=521860535]
-
-[node name="camera" type="Camera3D" parent="player/head" unique_id=1937027730]
-
-[node name="kick_detector" type="CollisionShape3D" parent="player/head" unique_id=1771639055]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -8.174542e-09, -0.650409)
-shape = SubResource("CapsuleShape3D_ya4ey")
-disabled = true
-debug_color = Color(0.9993934, 0, 0.12844995, 0.41960785)
-
-[node name="kick_timer" type="AnimationPlayer" parent="player" unique_id=1042409195]
-libraries/ = SubResource("AnimationLibrary_jyhfs")
-script = ExtResource("3_jyhfs")
-
-[node name="enemy_movement_targets" type="Node3D" parent="player" unique_id=1048640041]
-script = ExtResource("16_0ld40")
-distance_from_player = 3.0
-downward_raycasts_prefab = ExtResource("17_gqmmt")
-
-[node name="downward_raycast" parent="player/enemy_movement_targets" unique_id=1212819801 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(0, -0.96, 6)
-
-[node name="@RayCast3D@21716" parent="player/enemy_movement_targets" unique_id=60687170 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(2.2961006, -0.96, 5.543277)
-
-[node name="@RayCast3D@21717" parent="player/enemy_movement_targets" unique_id=115100291 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(4.2426405, -0.96, 4.2426405)
-
-[node name="@RayCast3D@21718" parent="player/enemy_movement_targets" unique_id=146790100 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(5.543277, -0.96, 2.2961006)
-
-[node name="@RayCast3D@21719" parent="player/enemy_movement_targets" unique_id=1720617860 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(6, -0.96, -2.6226832e-07)
-
-[node name="@RayCast3D@21720" parent="player/enemy_movement_targets" unique_id=1695608132 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(5.5432773, -0.96, -2.2961004)
-
-[node name="@RayCast3D@21721" parent="player/enemy_movement_targets" unique_id=1171149412 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(4.2426405, -0.96, -4.2426405)
-
-[node name="@RayCast3D@21722" parent="player/enemy_movement_targets" unique_id=354461209 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(2.2961009, -0.96, -5.543277)
-
-[node name="@RayCast3D@21723" parent="player/enemy_movement_targets" unique_id=1111512760 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(-5.2453663e-07, -0.96, -6)
-
-[node name="@RayCast3D@21724" parent="player/enemy_movement_targets" unique_id=468594061 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(-2.2961006, -0.96, -5.543277)
-
-[node name="@RayCast3D@21725" parent="player/enemy_movement_targets" unique_id=1983374874 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(-4.2426405, -0.96, -4.242641)
-
-[node name="@RayCast3D@21726" parent="player/enemy_movement_targets" unique_id=963546188 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(-5.543277, -0.96, -2.2961016)
-
-[node name="@RayCast3D@21727" parent="player/enemy_movement_targets" unique_id=323549132 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(-6, -0.96, 7.154928e-08)
-
-[node name="@RayCast3D@21728" parent="player/enemy_movement_targets" unique_id=1778504033 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(-5.543277, -0.96, 2.2961016)
-
-[node name="@RayCast3D@21729" parent="player/enemy_movement_targets" unique_id=578859998 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(-4.2426414, -0.96, 4.24264)
-
-[node name="@RayCast3D@21730" parent="player/enemy_movement_targets" unique_id=1553498357 instance=ExtResource("17_gqmmt")]
-target_position = Vector3(-2.2961006, -0.96, 5.5432773)
 
 [node name="enemies" type="Node3D" parent="." unique_id=101970571]
 

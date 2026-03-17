@@ -1,0 +1,412 @@
+[gd_scene format=3 uid="uid://bwautbvmih1xk"]
+
+[ext_resource type="Script" uid="uid://bt124crxgn3y7" path="res://scripts/player.gd" id="1_1txc5"]
+[ext_resource type="Script" uid="uid://c3kmv253rtgp3" path="res://scripts/kick_timer.gd" id="2_ht1c8"]
+[ext_resource type="Script" uid="uid://78kdt7dftjoa" path="res://scripts/enemy_movement_targets.gd" id="3_g2jcq"]
+[ext_resource type="PackedScene" uid="uid://bvanpd565pevq" path="res://prefabs/downward_raycast.tscn" id="4_u51tk"]
+[ext_resource type="PackedScene" uid="uid://dwfjyn673bmoq" path="res://meshes/left_leg_1.glb" id="5_ht1c8"]
+[ext_resource type="Material" uid="uid://h0y55ycad7fp" path="res://materials/enemy_white.tres" id="6_g2jcq"]
+[ext_resource type="PackedScene" uid="uid://cupapnyiou6ht" path="res://meshes/left_leg_2.glb" id="7_u51tk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o5qli"]
+radius = 0.3451514
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ya4ey"]
+radius = 0.36767578
+height = 1.0107422
+
+[sub_resource type="Animation" id="Animation_u51tk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("animation:kick_connecting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("legs/squish/left_leg_1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.22424257, -0.65878195, 0.12127471)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("legs/squish/left_leg_1:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.779401, 0.42432013, 0.57126707)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("legs/squish/left_leg_1/left_leg_2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.2044867, 4.7912415e-08, 0.22865573)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("legs/squish:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("legs:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("legs/squish/left_leg_1:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.9999998, 1.0000001, 0.99999994)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("legs/squish/right_leg_1:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.14467964, -0.50506335, 0.12127473)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("legs/squish/right_leg_1:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.779401, 0.4243202, 0.5712671)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("legs/squish/right_leg_1:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.99999976, 1.0000001, 0.9999999)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("legs/squish/right_leg_1/right_leg_2:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.2044867, 4.791242e-08, 0.22865571)]
+}
+
+[sub_resource type="Animation" id="Animation_g2jcq"]
+resource_name = "kick"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("animation:kick_connecting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 0.9, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("legs/squish/left_leg_1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3334, 0.5, 0.75, 0.9, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.22424257, -0.65878195, 0.12127471), Vector3(-0.31573433, -0.5123606, 0.12127471), Vector3(-0.44739324, -0.3016567, 0.12127471), Vector3(-0.44739324, -0.3016567, 0.12127471), Vector3(-0.44739324, -0.3016567, 0.12127471), Vector3(-0.22424257, -0.65878195, 0.12127471)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("legs/squish/left_leg_1:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3334, 0.5, 0.75, 0.9, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.779401, 0.42432013, 0.57126707), Vector3(0.7771531, 1.3664486, 1.3922955), Vector3(0.7739183, 2.7221947, 2.5737755), Vector3(1.3639619, 2.2561514, 2.2146783), Vector3(1.3639619, 2.2561514, 2.2146783), Vector3(0.779401, 0.42432013, 0.57126707)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("legs/squish/left_leg_1/left_leg_2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75, 0.9, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.2044867, 4.7912415e-08, 0.22865573), Vector3(-0.8456825, -2.835583, 3.0541806), Vector3(-0.15315628, 0.33576798, 0.042976905), Vector3(-0.15315628, 0.33576798, 0.042976905), Vector3(-1.2044867, 4.7912415e-08, 0.22865573)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("legs/squish:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.365, 0.5, 0.75, 0.9167, 0.9667, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.8, 1.5, 0.8), Vector3(1, 1, 1), Vector3(0.8, 0.8, 1.5), Vector3(1, 1, 1.3), Vector3(1, 1, 1), Vector3(1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("legs:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.365, 0.805, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.5235988), Vector3(0, 0, 0.34906584), Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("legs/squish/left_leg_1:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3334, 0.5, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.9999998, 1.0000001, 0.99999994), Vector3(1, 1, 1.5), Vector3(0.9999998, 1.0000001, 0.99999994), Vector3(0.9999998, 1.0000001, 0.99999994)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("legs/squish/right_leg_1:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.3334, 0.5, 0.75, 0.9, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.14467964, -0.50506335, 0.12127473), Vector3(-0.019619405, -0.30210146, 0.05613582), Vector3(-0.06971918, -0.1532483, -0.010918096), Vector3(0.019613653, -0.2998379, 0.044162244), Vector3(0.019613653, -0.2998379, 0.044162244), Vector3(0.14467964, -0.50506335, 0.12127473)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("legs/squish/right_leg_1:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.3334, 0.5, 0.75, 0.9, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.779401, 0.4243202, 0.5712671), Vector3(1.0886081, 0.92080534, 0.9780676), Vector3(1.138248, 1.852308, 1.8843194), Vector3(1.1683332, 1.9188358, 1.8988056), Vector3(1.1683332, 1.9188358, 1.8988056), Vector3(0.779401, 0.4243202, 0.5712671)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("legs/squish/right_leg_1:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.3334, 0.5, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.99999976, 1.0000001, 0.9999999), Vector3(1, 1, 1.5), Vector3(0.9999999, 1, 0.99999994), Vector3(0.99999976, 1.0000001, 0.9999999)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("legs/squish/right_leg_1/right_leg_2:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75, 0.9, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.2044867, 4.791242e-08, 0.22865571), Vector3(-1.3205733, -2.6032662, 2.8075478), Vector3(-0.2534706, 0.14313826, 0.30458328), Vector3(-0.2534706, 0.14313826, 0.30458328), Vector3(-1.2044867, 4.791242e-08, 0.22865571)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u51tk"]
+_data = {
+&"RESET": SubResource("Animation_u51tk"),
+&"kick": SubResource("Animation_g2jcq")
+}
+
+[node name="player" type="CharacterBody3D" unique_id=568664319 node_paths=PackedStringArray("kick_detector")]
+collision_mask = 2
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+script = ExtResource("1_1txc5")
+kick_detector = NodePath("head/kick_detector")
+
+[node name="shape" type="CollisionShape3D" parent="." unique_id=746708229]
+shape = SubResource("SphereShape3D_o5qli")
+
+[node name="head" type="Node3D" parent="." unique_id=453768700]
+
+[node name="camera" type="Camera3D" parent="head" unique_id=1725499897]
+near = 0.01
+
+[node name="kick_detector" type="CollisionShape3D" parent="head" unique_id=1322402126]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -8.174542e-09, -0.650409)
+shape = SubResource("CapsuleShape3D_ya4ey")
+disabled = true
+debug_color = Color(0.9993934, 0, 0.12844995, 0.41960785)
+
+[node name="animation" type="AnimationPlayer" parent="." unique_id=1972980851]
+libraries/ = SubResource("AnimationLibrary_u51tk")
+script = ExtResource("2_ht1c8")
+
+[node name="enemy_movement_targets" type="Node3D" parent="." unique_id=760919751]
+visible = false
+script = ExtResource("3_g2jcq")
+distance_from_player = 3.0
+downward_raycasts_prefab = ExtResource("4_u51tk")
+
+[node name="downward_raycast" parent="enemy_movement_targets" unique_id=906259805 instance=ExtResource("4_u51tk")]
+target_position = Vector3(0, -0.96, 6)
+
+[node name="_RayCast3D_21716" parent="enemy_movement_targets" unique_id=182493011 instance=ExtResource("4_u51tk")]
+target_position = Vector3(2.2961006, -0.96, 5.543277)
+
+[node name="_RayCast3D_21717" parent="enemy_movement_targets" unique_id=1611168750 instance=ExtResource("4_u51tk")]
+target_position = Vector3(4.2426405, -0.96, 4.2426405)
+
+[node name="_RayCast3D_21718" parent="enemy_movement_targets" unique_id=428131725 instance=ExtResource("4_u51tk")]
+target_position = Vector3(5.543277, -0.96, 2.2961006)
+
+[node name="_RayCast3D_21719" parent="enemy_movement_targets" unique_id=625167876 instance=ExtResource("4_u51tk")]
+target_position = Vector3(6, -0.96, -2.6226832e-07)
+
+[node name="_RayCast3D_21720" parent="enemy_movement_targets" unique_id=1236036378 instance=ExtResource("4_u51tk")]
+target_position = Vector3(5.5432773, -0.96, -2.2961004)
+
+[node name="_RayCast3D_21721" parent="enemy_movement_targets" unique_id=243024876 instance=ExtResource("4_u51tk")]
+target_position = Vector3(4.2426405, -0.96, -4.2426405)
+
+[node name="_RayCast3D_21722" parent="enemy_movement_targets" unique_id=475427160 instance=ExtResource("4_u51tk")]
+target_position = Vector3(2.2961009, -0.96, -5.543277)
+
+[node name="_RayCast3D_21723" parent="enemy_movement_targets" unique_id=1676159330 instance=ExtResource("4_u51tk")]
+target_position = Vector3(-5.2453663e-07, -0.96, -6)
+
+[node name="_RayCast3D_21724" parent="enemy_movement_targets" unique_id=672658963 instance=ExtResource("4_u51tk")]
+target_position = Vector3(-2.2961006, -0.96, -5.543277)
+
+[node name="_RayCast3D_21725" parent="enemy_movement_targets" unique_id=1502621320 instance=ExtResource("4_u51tk")]
+target_position = Vector3(-4.2426405, -0.96, -4.242641)
+
+[node name="_RayCast3D_21726" parent="enemy_movement_targets" unique_id=1702592824 instance=ExtResource("4_u51tk")]
+target_position = Vector3(-5.543277, -0.96, -2.2961016)
+
+[node name="_RayCast3D_21727" parent="enemy_movement_targets" unique_id=766215480 instance=ExtResource("4_u51tk")]
+target_position = Vector3(-6, -0.96, 7.154928e-08)
+
+[node name="_RayCast3D_21728" parent="enemy_movement_targets" unique_id=1402702309 instance=ExtResource("4_u51tk")]
+target_position = Vector3(-5.543277, -0.96, 2.2961016)
+
+[node name="_RayCast3D_21729" parent="enemy_movement_targets" unique_id=1034304967 instance=ExtResource("4_u51tk")]
+target_position = Vector3(-4.2426414, -0.96, 4.24264)
+
+[node name="_RayCast3D_21730" parent="enemy_movement_targets" unique_id=1822662432 instance=ExtResource("4_u51tk")]
+target_position = Vector3(-2.2961006, -0.96, 5.5432773)
+
+[node name="legs" type="Node3D" parent="." unique_id=407152835]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.023750648, 0)
+
+[node name="squish" type="Node3D" parent="legs" unique_id=462947894]
+
+[node name="left_leg_1" type="Node3D" parent="legs/squish" unique_id=774754571]
+transform = Transform3D(0.92307585, -0.24932942, 0.29285735, 0.38461742, 0.5983865, -0.7028534, 5.9604634e-08, 0.7614254, 0.6482526, -0.22424257, -0.65878195, 0.12127471)
+
+[node name="left_leg_12" parent="legs/squish/left_leg_1" unique_id=2125939608 instance=ExtResource("5_ht1c8")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9471186, 0)
+
+[node name="left_leg_1" parent="legs/squish/left_leg_1/left_leg_12" index="0" unique_id=676776082]
+surface_material_override/0 = ExtResource("6_g2jcq")
+
+[node name="left_leg_2" type="Node3D" parent="legs/squish/left_leg_1" unique_id=1866438732]
+transform = Transform3D(0.9739723, -0.22666849, 1.7160907e-08, 0.08118639, 0.3488498, 0.93365586, -0.21163036, -0.90935427, 0.35817245, -0.021602318, -1.096715, -0.080794975)
+
+[node name="left_leg_22" parent="legs/squish/left_leg_1/left_leg_2" unique_id=199977829 instance=ExtResource("7_u51tk")]
+
+[node name="right_leg_1" type="Node3D" parent="legs/squish" unique_id=1035804450]
+transform = Transform3D(0.9230758, -0.24932946, 0.2928574, 0.38461742, 0.5983865, -0.7028534, 1.1920926e-07, 0.7614254, 0.6482526, 0.14467964, -0.50506335, 0.12127473)
+
+[node name="left_leg_12" parent="legs/squish/right_leg_1" unique_id=67558380 instance=ExtResource("5_ht1c8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9471186, 0)
+
+[node name="left_leg_1" parent="legs/squish/right_leg_1/left_leg_12" index="0" unique_id=676776082]
+surface_material_override/0 = ExtResource("6_g2jcq")
+
+[node name="right_leg_2" type="Node3D" parent="legs/squish/right_leg_1" unique_id=516712997]
+transform = Transform3D(0.97397196, -0.22666842, 1.7160907e-08, 0.08118636, 0.3488497, 0.93365586, -0.21163027, -0.90935403, 0.35817245, -0.021602318, -1.096715, -0.080794975)
+
+[node name="left_leg_22" parent="legs/squish/right_leg_1/right_leg_2" unique_id=1794283460 instance=ExtResource("7_u51tk")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[editable path="legs/squish/left_leg_1/left_leg_12"]
+[editable path="legs/squish/left_leg_1/left_leg_2/left_leg_22"]
+[editable path="legs/squish/right_leg_1/left_leg_12"]
+[editable path="legs/squish/right_leg_1/right_leg_2/left_leg_22"]

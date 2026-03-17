@@ -9,11 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://caorka4hqulq5" path="res://prefabs/anim_take_damage.tscn" id="5_aivmq"]
 [ext_resource type="Script" uid="uid://b6bql1bmtsoqy" path="res://scripts/billboarding.gd" id="6_geowp"]
 [ext_resource type="PackedScene" uid="uid://chekpouad1dyw" path="res://meshes/statue.glb" id="7_geowp"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnd4m"]
-albedo_color = Color(0.88876957, 0.891086, 0.892079, 1)
-billboard_keep_scale = true
-fov_override = 10.0
+[ext_resource type="Material" uid="uid://h0y55ycad7fp" path="res://materials/enemy_white.tres" id="8_geowp"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yfjof"]
 height = 0.6816406
@@ -59,7 +55,7 @@ script = ExtResource("6_geowp")
 transform = Transform3D(-1.57361e-08, 0, 0.36, 0, 0.36, 0, -0.36, 0, -1.57361e-08, 0, -0.47970492, 0)
 
 [node name="merged" parent="visual/statue" index="0" unique_id=2052279506]
-surface_material_override/0 = SubResource("StandardMaterial3D_rnd4m")
+surface_material_override/0 = ExtResource("8_geowp")
 
 [node name="flash_white" type="Node3D" parent="." unique_id=1053149458]
 visible = false

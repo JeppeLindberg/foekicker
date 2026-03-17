@@ -4,7 +4,7 @@ extends CharacterBody3D
 
 @onready var main = get_node('/root/main')
 @onready var head = get_node('head')
-@onready var kick_timer = get_node('kick_timer')
+@onready var animation = get_node('animation')
 @onready var full_screen_effect_mgt = get_node('/root/main/full_screen_effect_mgt')
 @onready var enemy_movement_targets = get_node('enemy_movement_targets')
 
@@ -45,7 +45,7 @@ func _physics_process(delta):
 	rotation.y = lerp_angle(rotation.y, rotation_target.y, delta * 25)
 
 func _process(_delta):
-	if kick_timer.kick_connecting:
+	if animation.kick_connecting:
 		for node in main.get_nodes_in_shape(kick_detector):
 			if not node in immune_to_kick:
 				immune_to_kick.append(node)
@@ -76,10 +76,9 @@ func handle_controls(_delta):
 
 	# Kicking
 	
-	if Input.is_action_just_pressed("kick") and kick_timer.current_animation != 'kick':
+	if Input.is_action_just_pressed("kick") and animation.current_animation != 'kick':
 		immune_to_kick = []
-		kick_timer.kick_lifetime = 0.0
-		kick_timer.play('kick')
+		animation.play('kick')
 
 
 func take_damage():

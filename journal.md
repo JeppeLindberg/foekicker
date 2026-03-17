@@ -62,6 +62,14 @@ Endelig tilfreds med simpel statue
 
 Tilføjet dem til spillet
 
+# 26-03-16
+
+Ting skubber nu til hinanden i verden
+
+# 26-03-17
+
+These legs were made for kicking
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 
