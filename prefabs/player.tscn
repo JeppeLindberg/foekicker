@@ -314,6 +314,8 @@ shape = SubResource("CapsuleShape3D_ya4ey")
 disabled = true
 debug_color = Color(0.9993934, 0, 0.12844995, 0.41960785)
 
+[node name="listener" type="AudioListener3D" parent="head" unique_id=2090249064]
+
 [node name="animation" type="AnimationPlayer" parent="." unique_id=1972980851]
 libraries/ = SubResource("AnimationLibrary_u51tk")
 script = ExtResource("2_ht1c8")
@@ -387,7 +389,7 @@ transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9471186, 0)
 surface_material_override/0 = ExtResource("6_g2jcq")
 
 [node name="left_leg_2" type="Node3D" parent="legs/squish/left_leg_1" unique_id=1866438732]
-transform = Transform3D(0.9739723, -0.22666849, 1.7160907e-08, 0.08118639, 0.3488498, 0.93365586, -0.21163036, -0.90935427, 0.35817245, -0.021602318, -1.096715, -0.080794975)
+transform = Transform3D(0.9739723, -0.22666848, 1.7160907e-08, 0.08118639, 0.34884977, 0.93365586, -0.21163036, -0.9093542, 0.35817245, -0.021602318, -1.096715, -0.080794975)
 
 [node name="left_leg_22" parent="legs/squish/left_leg_1/left_leg_2" unique_id=199977829 instance=ExtResource("7_u51tk")]
 
@@ -401,7 +403,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9471186, 0)
 surface_material_override/0 = ExtResource("6_g2jcq")
 
 [node name="right_leg_2" type="Node3D" parent="legs/squish/right_leg_1" unique_id=516712997]
-transform = Transform3D(0.97397196, -0.22666842, 1.7160907e-08, 0.08118636, 0.3488497, 0.93365586, -0.21163027, -0.90935403, 0.35817245, -0.021602318, -1.096715, -0.080794975)
+transform = Transform3D(0.97397184, -0.2266684, 1.7160907e-08, 0.081186354, 0.34884968, 0.93365586, -0.21163024, -0.909354, 0.35817245, -0.021602318, -1.096715, -0.080794975)
 
 [node name="left_leg_22" parent="legs/squish/right_leg_1/right_leg_2" unique_id=1794283460 instance=ExtResource("7_u51tk")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

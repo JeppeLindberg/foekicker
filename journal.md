@@ -70,6 +70,12 @@ Ting skubber nu til hinanden i verden
 
 These legs were made for kicking
 
+# 26-03-18
+
+Fandt et lyd library
+
+Oprettede et audio player system
+
 # TODO
 
 Freeze-frames når fjender tager skade og når man sparker dem 

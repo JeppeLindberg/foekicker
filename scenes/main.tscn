@@ -15,7 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://bmaw5pm1duks6" path="res://prefabs/grey_floor.tscn" id="6_85g3d"]
 [ext_resource type="Script" uid="uid://bvgykcvjiursu" path="res://scripts/area.gd" id="6_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cis7uomon4xln" path="res://prefabs/barrel.tscn" id="7_choun"]
+[ext_resource type="Script" uid="uid://c1rtb7ty8rqr2" path="res://scripts/sound_mgt.gd" id="10_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://du30deot3vuur" path="res://prefabs/sound_player.tscn" id="11_0ld40"]
 [ext_resource type="PackedScene" uid="uid://blu5peffefbi8" path="res://prefabs/enemy.tscn" id="12_eb6dy"]
+[ext_resource type="AudioStream" uid="uid://dx05ux7rhpjim" path="res://audio/400_sounds/kick.wav" id="12_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://bwautbvmih1xk" path="res://prefabs/player.tscn" id="14_muem4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ld40"]
@@ -11492,6 +11495,11 @@ target_position = Vector3(0, 0, 1.2000008)
 
 [node name="@RayCast3D@304770" parent="navigation_grid/@Node3D@302344" unique_id=562553444 instance=ExtResource("5_jkv2x")]
 target_position = Vector3(0, 0, 0)
+
+[node name="sound_mgt" type="Node" parent="." unique_id=1344592809]
+script = ExtResource("10_dp3eg")
+sound_player_prefab = ExtResource("11_0ld40")
+kick_stream = ExtResource("12_gqmmt")
 
 [node name="full_screen_effect_mgt" type="Node" parent="." unique_id=1312736719 node_paths=PackedStringArray("full_screen_effect", "transition_anim")]
 script = ExtResource("2_eb6dy")

@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var animation = get_node('animation')
 @onready var full_screen_effect_mgt = get_node('/root/main/full_screen_effect_mgt')
 @onready var enemy_movement_targets = get_node('enemy_movement_targets')
+@onready var sound_mgt = get_node('/root/main/sound_mgt')
 
 var rotation_target: Vector3 = Vector3.ZERO
 
@@ -51,6 +52,7 @@ func _process(_delta):
 				immune_to_kick.append(node)
 				if node.is_in_group('kickable'):
 					node.kick(global_position, kick_force)
+					sound_mgt.play_sound(node, 'kick')
 
 
 func handle_controls(_delta):
